@@ -3,9 +3,8 @@ language: bash
 sudo: false
 dist: trusty
 
-addons:
-  apt:
-    packages:
-    - spamassassin
+before_install:
+    - sudo rm -f /etc/profile.d/travis-java.sh
+    - sudo apt-get -qy --no-install-suggests --no-install-recommends install spamassassin
 
 script: spamassassin --config-file grrbl_blacklist.cf --lint
